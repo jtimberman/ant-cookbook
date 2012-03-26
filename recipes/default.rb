@@ -20,7 +20,7 @@
 include_recipe "java"
 
 case node.platform
-when "centos","redhat","fedora"
+when "amazon", "centos","redhat","fedora", "scientific"
   include_recipe "jpackage"
 end
 
