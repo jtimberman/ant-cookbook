@@ -1,8 +1,8 @@
 #
 # Cookbook Name:: ant
-# Recipe:: default
+# Recipe:: ant_package
 #
-# Copyright 2010, Opscode, Inc.
+# Copyright 2012, Kyle Allan (<kallan@riotgames.com>)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,11 +18,19 @@
 #
 
 include_recipe "java"
+include_recipe "ark"
 
-case node.platform
-when "centos","redhat","fedora"
-  include_recipe "jpackage"
+ark "ant" do
+  url node[:ant][:url]
+  checksum node[:ant][:checksum]
+  home_dir node[:ant][:home]
+  version node[:ant][:version]
+  append_env_path true
+  action :install
 end
 
-include_recipe "ant::ant_source" if node.ant.install.source || node.platform == "unknown"
-include_recipe "ant::ant_package"
+template "/etc/profile.d/ant_home.sh" do
+  mode 0755
+  source "ant_home.sh.erb"
+  variables(:ant_home => node[:ant][:home])
+end

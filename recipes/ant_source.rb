@@ -1,8 +1,8 @@
 #
 # Cookbook Name:: ant
-# Recipe:: default
+# Recipe:: ant_source
 #
-# Copyright 2010, Opscode, Inc.
+# Copyright 2012, Kyle Allan (<kallan@riotgames.com>)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,10 +19,10 @@
 
 include_recipe "java"
 
-case node.platform
-when "centos","redhat","fedora"
-  include_recipe "jpackage"
-end
+ant_pkgs = ["ant","ant-contrib","ivy"]
 
-include_recipe "ant::ant_source" if node.ant.install.source || node.platform == "unknown"
-include_recipe "ant::ant_package"
+ant_pkgs.each do |pkg|
+  package pkg do
+    action :install
+  end
+end
