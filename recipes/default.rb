@@ -18,24 +18,13 @@
 #
 
 include_recipe "java"
+include_recipe "ark"
 
-case node.platform
-when "centos","redhat","fedora"
-  include_recipe "jpackage"
-end
-
-ant_pkgs = value_for_platform(
-  ["debian","ubuntu",] => {
-    "default" => ["ant","ant-contrib","ivy"]
-  },
-  ["centos","redhat","fedora" ] => {
-    "default" => ["ant","ant-contrib","ivy"]
-  },
-  "default" => ["ant","ant-contrib","ivy"]
-)
-
-ant_pkgs.each do |pkg|
-  package pkg do
-    action :install
-  end
+ark "ant" do
+  url node[:ant][:url]
+  checksum node[:ant][:checksum]
+  home_dir node[:ant][:home]
+  version node[:ant][:version]
+  append_env_path true
+  action :install
 end
