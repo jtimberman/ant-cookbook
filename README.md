@@ -13,15 +13,20 @@ Platform:
 The following Opscode cookbooks are dependencies:
 
 * java
-* jpackage
+* ark
 
 Attributes
 ==========
 
+* default[:ant][:version] defaults to 1.8.2
+* default[:ant][:home] defaults to /usr/local/ant
+* default[:ant][:url] the download url for the ant binary zip
+* default[:ant][:checksum] the sha256 checksum for the ant binary zip downloaded in the url
+
 Usage
 =====
 
-Simply include the recipe where you want Apache Ant & Ivy installed.
+Simply include the recipe where you want Apache Ant installed.
 
 TODO
 ====
