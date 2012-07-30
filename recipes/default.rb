@@ -2,7 +2,7 @@
 # Cookbook Name:: ant
 # Recipe:: default
 #
-# Copyright 2010, Opscode, Inc.
+# Copyright 2012, Kyle Allan (<kallan@riotgames.com>)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -27,4 +27,10 @@ ark "ant" do
   version node[:ant][:version]
   append_env_path true
   action :install
+end
+
+template "/etc/profile.d/ant_home.sh" do
+  mode 0755
+  source "ant_home.sh.erb"
+  variables(:ant_home => node[:ant][:home])
 end
