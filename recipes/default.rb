@@ -24,5 +24,8 @@ when "centos","redhat","fedora"
   include_recipe "jpackage"
 end
 
-include_recipe "ant::ant_source" if node.ant.install.source || node.platform == "unknown"
-include_recipe "ant::ant_package"
+if node.ant.install.source || node.platform == "unknown"
+  include_recipe "ant::ant_source"
+else
+  include_recipe "ant::ant_package"
+end
