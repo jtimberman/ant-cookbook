@@ -37,6 +37,4 @@ end
 
 ant_library "ant-contrib" do
   url "http://search.maven.org/remotecontent?filepath=ant-contrib/ant-contrib/1.0b3/ant-contrib-1.0b3.jar"
-  version "1.0b3"
-  extension "jar"
 end

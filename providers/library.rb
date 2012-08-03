@@ -19,7 +19,8 @@
 #
 
 def load_current_resource
-  @current_resource = Chef::Resource::AntLibrary.new(new_resource.name, new_resource.version, new_resource.extension)
+  @current_resource = Chef::Resource::AntLibrary.new(new_resource.name)
+  @current_resource.url new_resource.url
 end
 
 action :install do

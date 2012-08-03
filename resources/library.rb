@@ -27,9 +27,8 @@ actions :install
 
 attribute :name, :kind_of           => String, :required => true, :name_attribute => true
 attribute :url, :kind_of            => String, :required => true
-attribute :version, :kind_of        => String, :required => true
-attribute :extension, :kind_of      => String, :required => true
 
 def file_name
-  "#{self.name}-#{self.version}.#{self.extension}"
+  partition = self.url.partition(/.*\//)
+  "#{partition.last}"
 end
