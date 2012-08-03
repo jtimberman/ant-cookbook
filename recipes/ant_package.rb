@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: ant
-# Recipe:: ant_package
+# Recipe:: ant_source
 #
 # Copyright 2012, Kyle Allan (<kallan@riotgames.com>)
 #
@@ -18,24 +18,11 @@
 #
 
 include_recipe "java"
-include_recipe "ark"
 
-ark "ant" do
-  url node[:ant][:url]
-  checksum node[:ant][:checksum]
-  home_dir node[:ant][:home]
-  version node[:ant][:version]
-  append_env_path true
-  action :install
-end
+ant_pkgs = ["ant","ant-contrib","ivy"]
 
-template "/etc/profile.d/ant_home.sh" do
-  mode 0755
-  source "ant_home.sh.erb"
-  variables(:ant_home => node[:ant][:home])
-end
-
-ant_library "ant-contrib" do
-  url "http://search.maven.org/remotecontent?filepath=ant-contrib/ant-contrib/1.0b3/ant-contrib-1.0b3.jar"
-  extension "jar"
+ant_pkgs.each do |pkg|
+  package pkg do
+    action :install
+  end
 end
