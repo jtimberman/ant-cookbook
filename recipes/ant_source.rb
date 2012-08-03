@@ -35,6 +35,8 @@ template "/etc/profile.d/ant_home.sh" do
   variables(:ant_home => node[:ant][:home])
 end
 
-ant_library "ant-contrib" do
-  url "http://search.maven.org/remotecontent?filepath=ant-contrib/ant-contrib/1.0b3/ant-contrib-1.0b3.jar"
+node[:ant][:libraries].each do |library, url|
+  ant_library library do
+    url url
+  end
 end
