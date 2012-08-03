@@ -34,3 +34,8 @@ template "/etc/profile.d/ant_home.sh" do
   source "ant_home.sh.erb"
   variables(:ant_home => node[:ant][:home])
 end
+
+ant_library "ant-contrib" do
+  url "http://search.maven.org/remotecontent?filepath=ant-contrib/ant-contrib/1.0b3/ant-contrib-1.0b3.jar"
+  extension "jar"
+end
