@@ -19,15 +19,20 @@
 #
 
 def load_current_resource
-  @current_resource = Chef::Resource::AntLibrary.new(new_resource.name)
+  @current_resource = Chef::Resource::AntLibrary.new(new_resource.name, new_resource.version, new_resource.extension)
 end
 
 action :install do
-  unless ::File.exists?("#{node[:ant][:home]}/lib/#{@current_resource.name}")
-    remote_file "#{node[:ant][:home]}/lib/#{new_resource.name}.#{new_resource.extension}" do
+  unless ::File.exists?("#{node[:ant][:home]}/lib/#{@current_resource.file_name}")
+    remote_file remote_file_path do
       source new_resource.url
       mode "0755"
     end
     new_resource.updated_by_last_action(true)
   end
+end
+
+private
+def remote_file_path
+  "#{node[:ant][:home]}/lib/#{new_resource.file_name}"
 end
