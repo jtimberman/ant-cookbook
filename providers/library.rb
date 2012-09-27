@@ -34,6 +34,7 @@ action :install do
 end
 
 private
-def remote_file_path
-  "#{node[:ant][:home]}/lib/#{new_resource.file_name}"
-end
+
+  def remote_file_path
+    "#{node[:ant][:home]}/lib/#{new_resource.file_name}"
+  end
