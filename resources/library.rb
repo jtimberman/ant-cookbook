@@ -1,8 +1,9 @@
 #
 # Cookbook Name:: ant
-# Recipe:: default
+# Resource:: library
 #
-# Copyright 2010, Opscode, Inc.
+# Author:: Kyle Allan (<kallan@riotgames.com>)
+# Copyright 2012, Riot Games
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,8 +18,13 @@
 # limitations under the License.
 #
 
-if node[:ant][:install][:source] || node.platform == "unknown"
-  include_recipe "ant::ant_source"
-else
-  include_recipe "ant::ant_package"
+default_action :install
+actions :install
+
+attribute :name, :kind_of           => String, :required => true, :name_attribute => true
+attribute :url, :kind_of            => String, :required => true
+
+def file_name
+  partition = self.url.partition(/.*\//)
+  "#{partition.last}"
 end
