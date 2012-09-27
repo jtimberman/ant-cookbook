@@ -18,11 +18,7 @@
 # limitations under the License.
 #
 
-def initialize(*args)
-  super
-  @action = :install
-end
-
+default_action :install
 actions :install
 
 attribute :name, :kind_of           => String, :required => true, :name_attribute => true

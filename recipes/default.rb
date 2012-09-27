@@ -17,8 +17,6 @@
 # limitations under the License.
 #
 
-include_recipe "java"
-
 if node[:ant][:install][:source] || node.platform == "unknown"
   include_recipe "ant::ant_source"
 else

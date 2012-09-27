@@ -2,3 +2,4 @@ Berksfile.lock
 Gemfile.lock
 /cookbooks
 .vagrant
+.DS_Store
