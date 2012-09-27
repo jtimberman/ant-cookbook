@@ -38,25 +38,10 @@ Vagrant::Config.run do |config|
   config.vm.provision :chef_solo do |chef|
     
     chef.json = {
-      :mysql => {
-        :server_root_password => 'rootpass',
-        :server_debian_password => 'debpass',
-        :server_repl_password => 'replpass'
-      }
     }
 
     chef.run_list = [
       "recipe[ant::default]"
     ]
   end
-
-  # config.vm.provision :chef_client do |chef|
-  #   chef.chef_server_url = 'https://api.opscode.com/organizations/vialstudios'
-  #   chef.validation_client_name = 'vialstudios-validator'
-  #   chef.validation_key_path = '/Users/reset/.chef/vialstudios-validator.pem'
-  #
-  #   chef.run_list = [
-  #     "recipe[ant::default]"
-  #   ]
-  # end
 end
