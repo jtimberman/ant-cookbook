@@ -36,7 +36,6 @@ Vagrant::Config.run do |config|
   config.ssh.timeout   = 120
 
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = ["cookbooks"]
     
     chef.json = {
       :mysql => {
