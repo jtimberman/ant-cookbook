@@ -19,16 +19,16 @@
 
 include_recipe "java"
 
-case node.platform
-when "centos","redhat","fedora"
+case node.platform_family
+when "redhat","fedora"
   include_recipe "jpackage"
 end
 
-ant_pkgs = value_for_platform(
-  ["debian","ubuntu",] => {
+ant_pkgs = value_for_platform_family(
+  ["debian"] => {
     "default" => ["ant","ant-contrib","ivy"]
   },
-  ["centos","redhat","fedora" ] => {
+  ["redhat","fedora" ] => {
     "default" => ["ant","ant-contrib","ivy"]
   },
   "default" => ["ant","ant-contrib","ivy"]
