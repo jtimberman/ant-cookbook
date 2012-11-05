@@ -28,6 +28,21 @@ Usage
 
 Simply include the recipe where you want Apache Ant installed.
 
+Recipes
+=======
+
+ant::install_package
+====================
+
+Backwards compatible recipe for older users of the cookbook. Installs Ant, Ant-Contribs, and Ivy using your OS's
+package manager.
+
+ant::install_source
+===================
+
+Installs Ant using the `ark` resource and a URL for an Ant archive. Adds an $ANT_HOME to your environment.
+Uses the `ant::library` LWRP to install optional Ant packages into the Ant installation's `lib` directory.
+
 TODO
 ====
 
