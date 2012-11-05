@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-if node[:ant][:install][:source] || node.platform == "unknown"
+if node[:ant][:install][:source]
   include_recipe "ant::ant_source"
 else
   include_recipe "ant::ant_package"

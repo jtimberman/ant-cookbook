@@ -35,8 +35,8 @@ template "/etc/profile.d/ant_home.sh" do
   variables(:ant_home => node[:ant][:home])
 end
 
-node[:ant][:libraries].each do |library, url|
+node[:ant][:libraries].each do |library, library_url|
   ant_library library do
-    url url
+    url library_url
   end
 end
