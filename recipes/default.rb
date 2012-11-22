@@ -2,7 +2,7 @@
 # Cookbook Name:: ant
 # Recipe:: default
 #
-# Copyright 2010, Opscode, Inc.
+# Copyright 2010-2012, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,8 +17,4 @@
 # limitations under the License.
 #
 
-if node[:ant][:install][:source]
-  include_recipe "ant::ant_source"
-else
-  include_recipe "ant::ant_package"
-end
+include_recipe "ant::install_#{node['ant']['install_method']}"

@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: ant
-# Recipe:: ant_source
+# Recipe:: install_package
 #
 # Copyright 2012, Kyle Allan (<kallan@riotgames.com>)
 #
