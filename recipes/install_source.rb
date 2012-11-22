@@ -21,10 +21,10 @@ include_recipe "java"
 include_recipe "ark"
 
 ark "ant" do
-  url node[:ant][:url]
-  checksum node[:ant][:checksum]
-  home_dir node[:ant][:home]
-  version node[:ant][:version]
+  url node['ant']['url']
+  checksum node['ant']['checksum']
+  home_dir node['ant']['home']
+  version node['ant']['version']
   append_env_path true
   action :install
 end
@@ -32,10 +32,10 @@ end
 template "/etc/profile.d/ant_home.sh" do
   mode 0755
   source "ant_home.sh.erb"
-  variables(:ant_home => node[:ant][:home])
+  variables(:ant_home => node['ant']['home'])
 end
 
-node[:ant][:libraries].each do |library, library_url|
+node['ant']['libraries'].each do |library, library_url|
   ant_library library do
     url library_url
   end
