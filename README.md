@@ -1,7 +1,7 @@
 Description
 ===========
 
-Installs and configures Apache Ant & Ivy
+Installs and configures Apache Ant
 
 Requirements
 ============
@@ -13,15 +13,35 @@ Platform:
 The following Opscode cookbooks are dependencies:
 
 * java
-* jpackage
+* ark
 
 Attributes
 ==========
 
+* default[:ant][:version] defaults to 1.8.2
+* default[:ant][:home] defaults to /usr/local/ant
+* default[:ant][:url] the download url for the ant binary zip
+* default[:ant][:checksum] the sha256 checksum for the ant binary zip downloaded in the url
+
 Usage
 =====
 
-Simply include the recipe where you want Apache Ant & Ivy installed.
+Simply include the recipe where you want Apache Ant installed.
+
+Recipes
+=======
+
+ant::install_package
+====================
+
+Backwards compatible recipe for older users of the cookbook. Installs Ant, Ant-Contribs, and Ivy using your OS's
+package manager.
+
+ant::install_source
+===================
+
+Installs Ant using the `ark` resource and a URL for an Ant archive. Adds an $ANT_HOME to your environment.
+Uses the `ant::library` LWRP to install optional Ant packages into the Ant installation's `lib` directory.
 
 TODO
 ====
@@ -47,5 +67,3 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
-
