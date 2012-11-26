@@ -6,7 +6,7 @@ Installs and configures Apache Ant
 Requirements
 ============
 
-Platform: 
+Platform:
 
 * Debian, Ubuntu, CentOS, Red Hat, Fedora
 
@@ -18,10 +18,37 @@ The following Opscode cookbooks are dependencies:
 Attributes
 ==========
 
-* default[:ant][:version] defaults to 1.8.2
-* default[:ant][:home] defaults to /usr/local/ant
-* default[:ant][:url] the download url for the ant binary zip
-* default[:ant][:checksum] the sha256 checksum for the ant binary zip downloaded in the url
+* `node['ant']['version']` -  defaults to 1.8.2
+* `node['ant']['home']`- defaults to /usr/local/ant
+* `node['ant']['url']` - the download url for the ant binary zip
+* `node['ant']['checksum']` - the sha256 checksum for the ant binary
+  zip downloaded in the url
+* `node['ant']['install_method']` - the installation recipe to use,
+  can be "package" (default) or "source".
+* `node['ant']['libraries']` - a hash of libraries and their URLs
+  installed with the "`ant_library`" LWRP in the `install_source`
+  recipe. The hash is the form `{"library-name" =>
+  "http://url.to.library.jar.file"}`
+
+Resources/Providers
+===================
+
+## ant\_library
+
+### Actions
+
+* `:install` - (Default) Install the ant library specified.
+
+### Attributes
+
+* `name` - name of the library
+* `url` - url where the jar for the library can be downloaded
+
+### Examples
+
+    ant_library "ant-contrib" do
+      url "http://search.maven.org/remotecontent?filepath=ant-contrib/ant-contrib/1.0b3/ant-contrib-1.0b3.jar"
+    end
 
 Usage
 =====
