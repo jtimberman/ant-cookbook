@@ -3,3 +3,4 @@ Gemfile.lock
 /cookbooks
 .vagrant
 .DS_Store
+test/kitchen/.kitchen/
