@@ -1,4 +1,0 @@
-cookbook "ant" do
-  configuration "default" # package based install
-  configuration "source_install"
-end
