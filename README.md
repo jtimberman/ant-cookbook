@@ -29,6 +29,8 @@ Attributes
   installed with the "`ant_library`" LWRP in the `install_source`
   recipe. The hash is the form `{"library-name" =>
   "http://url.to.library.jar.file"}`
+* `node['ant']['prefix_bin']` - the default directory to place a symlink to the binary when installing from "source".
+* `node['ant']['has_binaries']` - an array of binary commands to symlink when installing from "source" via ark
 
 Resources/Providers
 ===================

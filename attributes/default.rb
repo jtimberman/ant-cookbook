@@ -23,3 +23,5 @@ default['ant']['checksum']       = '664f48cfc9c4a9a832ec1dd9d2bed5229c0a9561e489
 default['ant']['install_method'] = "package"
 
 default['ant']['libraries']      = {"ant-contrib" => "http://search.maven.org/remotecontent?filepath=ant-contrib/ant-contrib/1.0b3/ant-contrib-1.0b3.jar"}
+default['ant']['prefix_bin']     = '/usr/bin'
+default['ant']['has_binaries']   = ['bin/ant']

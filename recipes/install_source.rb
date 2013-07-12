@@ -25,6 +25,8 @@ ark "ant" do
   checksum node['ant']['checksum']
   home_dir node['ant']['home']
   version node['ant']['version']
+  prefix_bin node['ant']['prefix_bin']
+  has_binaries node['ant']['has_binaries']
   append_env_path true
   action :install
 end
