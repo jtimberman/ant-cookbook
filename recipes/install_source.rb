@@ -20,7 +20,13 @@
 include_recipe "java"
 include_recipe "ark"
 
+ant_path = ::File.join(node['ant']['home'],'bin','ant')
+
 ark "ant" do
+  not_if {
+    ::File.exists?(ant_path) &&
+    "#{ant_path} -version | grep '#{node['ant']['version']}'"
+  }
   url node['ant']['url']
   checksum node['ant']['checksum']
   home_dir node['ant']['home']
