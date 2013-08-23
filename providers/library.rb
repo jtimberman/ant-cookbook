@@ -25,6 +25,11 @@ end
 
 action :install do
   unless ::File.exists?("#{node["ant"]["home"]}/lib/#{@current_resource.file_name}")
+    directory "#{node["ant"]["home"]}/lib" do
+      action :create
+      recursive true
+    end
+
     remote_file remote_file_path do
       source new_resource.url
       mode "0755"
