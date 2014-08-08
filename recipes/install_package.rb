@@ -19,10 +19,29 @@
 
 include_recipe "java"
 
-ant_pkgs = ["ant","ant-contrib","ivy"]
+ant_pkgs = (node[:platform_family].eql?('rhel')) && %w(ant ant-contrib) || %w(ant ant-contrib ivy)
 
 ant_pkgs.each do |pkg|
   package pkg do
     action :install
+  end
+end
+
+if node[:platform_family].eql?('rhel')
+  ark "ivy" do
+    url node['ivy']['url']
+    checksum node['ivy']['checksum']
+    version node['ivy']['version']
+    action :install
+  end
+
+  link '/usr/share/java/ivy.jar' do
+    to "/usr/local/ivy/ivy-#{node['ivy']['version']}.jar"
+    action :create
+  end
+
+  link '/usr/share/ant/lib/ivy.jar' do
+    to '/usr/share/java/ivy.jar'
+    action :create
   end
 end
