@@ -4,6 +4,11 @@
 
 - [COOK-2943]: Ant cookbook has foodcritic failures
 
+
+## v2.1.0:
+
+* Moderate support for OSX install_source
+
 ## v2.0.0:
 
 * Move to Berkshelf 3
