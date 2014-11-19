@@ -32,7 +32,7 @@ if node[:platform_family].eql?('mac_os_x')
   include_recipe "java-mac"
 
   file "/etc/paths.d/ant" do
-    content '/usr/local/ant/bin'
+    content '/usr/local/ant/bin:'
     mode 0755
   end
 
