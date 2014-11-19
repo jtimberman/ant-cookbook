@@ -17,25 +17,23 @@
 # limitations under the License.
 #
 
-if node[:platform_family].eql?('mac_os_x')
-  include_recipe "java-mac"
-else
-  include_recipe "java"
-end
 include_recipe "ark"
 
-if node[:platform_family].eql?('mac_os_x')
-  ark "ant" do
-    url node['ant']['url']
-    checksum node['ant']['checksum']
-    home_dir node['ant']['home']
-    version node['ant']['version']
-    action :install
-  end
+ark "ant" do
+  url node['ant']['url']
+  checksum node['ant']['checksum']
+  home_dir node['ant']['home']
+  version node['ant']['version']
+  append_env_path true unless node[:platform_family].eql?('mac_os_x')
+  action :install
+end
 
-  template "/etc/paths.d/ant" do
+if node[:platform_family].eql?('mac_os_x')
+  include_recipe "java-mac"
+
+  file "/etc/paths.d/ant" do
+    content '/usr/local/ant/bin'
     mode 0755
-    source "ant_path.erb"
   end
 
   # Set ANT_HOME
@@ -46,14 +44,7 @@ if node[:platform_family].eql?('mac_os_x')
     EOH
   end
 else
-  ark "ant" do
-    url node['ant']['url']
-    checksum node['ant']['checksum']
-    home_dir node['ant']['home']
-    version node['ant']['version']
-    append_env_path true
-    action :install
-  end
+  include_recipe "java"
 
   template "/etc/profile.d/ant_home.sh" do
     mode 0755
@@ -61,7 +52,6 @@ else
     variables(:ant_home => node['ant']['home'])
   end
 end
-
 
 node['ant']['libraries'].each do |library, library_url|
   ant_library library do
