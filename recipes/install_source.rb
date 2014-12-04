@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe "java"
+include_recipe "java" if node['ant']['install_java']
 include_recipe "ark"
 
 ark "ant" do

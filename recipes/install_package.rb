@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe "java"
+include_recipe "java" if node['ant']['install_java']
 
 ant_pkgs = ["ant","ant-contrib","ivy"]
 
