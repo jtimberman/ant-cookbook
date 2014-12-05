@@ -29,6 +29,8 @@ Attributes
   installed with the "`ant_library`" LWRP in the `install_source`
   recipe. The hash is the form `{"library-name" =>
   "http://url.to.library.jar.file"}`
+* `node['ant']['install_java']` - Whether or not to use the Java community
+  cookbook to install Java. Defaults to `true`.
 
 Resources/Providers
 ===================
