@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.hostname = "ant-berkshelf"
 
-  config.omnibus.chef_version = :latest
+  config.omnibus.chef_version = '11.16.4'
 
   config.vm.box = "opscode-centos-6.5-provisionerless"
 

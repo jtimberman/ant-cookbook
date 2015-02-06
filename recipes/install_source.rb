@@ -36,21 +36,12 @@ if node[:platform_family].eql?('mac_os_x')
     mode 0755
   end
 
-  # Set ANT_HOME
-  bash "Set ANT_HOME" do
-    user "root"
-    code <<-EOH
-(grep -q '^export ANT_HOME' /etc/profile && sed -i '' 's#^export ANT_HOME=.*#export ANT_HOME=/usr/local/ant/#' /etc/profile) || echo '\nexport ANT_HOME=/usr/local/ant/' >> /etc/profile
-    EOH
+  append_if_no_line "Adding GROOVY_HOME to /etc/profile" do
+    path "/etc/profile"
+    line "export ANT_HOME=#{node['ant']['home']}"
   end
 else
   include_recipe "java"
-
-  template "/etc/profile.d/ant_home.sh" do
-    mode 0755
-    source "ant_home.sh.erb"
-    variables(:ant_home => node['ant']['home'])
-  end
 end
 
 node['ant']['libraries'].each do |library, library_url|
