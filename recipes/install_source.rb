@@ -42,6 +42,12 @@ if node[:platform_family].eql?('mac_os_x')
   end
 else
   include_recipe "java"
+
+  template "/etc/profile.d/ant_home.sh" do
+    mode 0755
+    source "ant_home.sh.erb"
+    variables(:ant_home => node['ant']['home'])
+  end
 end
 
 node['ant']['libraries'].each do |library, library_url|
