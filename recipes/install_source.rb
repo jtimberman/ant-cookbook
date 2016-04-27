@@ -17,7 +17,6 @@
 # limitations under the License.
 #
 
-include_recipe "java"
 include_recipe "ark"
 
 ark "ant" do
@@ -25,14 +24,30 @@ ark "ant" do
   checksum node['ant']['checksum']
   home_dir node['ant']['home']
   version node['ant']['version']
-  append_env_path true
+  append_env_path true unless node[:platform_family].eql?('mac_os_x')
   action :install
 end
 
-template "/etc/profile.d/ant_home.sh" do
-  mode 0755
-  source "ant_home.sh.erb"
-  variables(:ant_home => node['ant']['home'])
+if node[:platform_family].eql?('mac_os_x')
+  include_recipe "java-mac"
+
+  file "/etc/paths.d/ant" do
+    content '/usr/local/ant/bin:'
+    mode 0755
+  end
+
+  append_if_no_line "Adding GROOVY_HOME to /etc/profile" do
+    path "/etc/profile"
+    line "export ANT_HOME=#{node['ant']['home']}"
+  end
+else
+  include_recipe "java"
+
+  template "/etc/profile.d/ant_home.sh" do
+    mode 0755
+    source "ant_home.sh.erb"
+    variables(:ant_home => node['ant']['home'])
+  end
 end
 
 node['ant']['libraries'].each do |library, library_url|
