@@ -10,7 +10,7 @@ Platform:
 
 * Debian, Ubuntu, CentOS, Red Hat, Fedora
 
-The following Opscode cookbooks are dependencies:
+The following Chef cookbooks are dependencies:
 
 * java
 * ark
@@ -30,7 +30,7 @@ Attributes
   recipe. The hash is the form `{"library-name" =>
   "http://url.to.library.jar.file"}`
 
-Resources/Providers
+Resources
 ===================
 
 ## ant\_library
@@ -81,7 +81,7 @@ License and Author
 
 Author:: Seth Chisamore (<schisamo@opscode.com>)
 
-Copyright 2010, Opscode, Inc.
+Copyright 2016, Chef Software, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
