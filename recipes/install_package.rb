@@ -17,8 +17,6 @@
 # limitations under the License.
 #
 
-include_recipe 'java'
-
 ant_pkgs = ['ant', 'ant-contrib', 'ivy']
 
 ant_pkgs.each do |pkg|

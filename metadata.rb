@@ -11,7 +11,6 @@ end
 
 recipe 'ant::default', 'Installs and configures Ant'
 
-depends 'java'
 depends 'ark'
 
 source_url 'https://github.com/jtimberman/ant-cookbook' if respond_to?(:source_url)

@@ -17,7 +17,6 @@
 # limitations under the License.
 #
 
-include_recipe 'java'
 include_recipe 'ark'
 
 ant_path = ::File.join(node['ant']['home'], 'bin', 'ant')
@@ -27,8 +26,7 @@ ark 'ant' do
     ::File.exist?(ant_path) &&
       "#{ant_path} -version | grep '#{node['ant']['version']}'"
   end
-  url node['ant']['url']
-  checksum node['ant']['checksum']
+  url "#{node['ant']['url']}/apache-ant-#{node['ant']['version']}-bin.tar.gz"
   home_dir node['ant']['home']
   version node['ant']['version']
   append_env_path true
