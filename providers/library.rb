@@ -24,10 +24,15 @@ def load_current_resource
 end
 
 action :install do
-  unless ::File.exists?("#{node["ant"]["home"]}/lib/#{@current_resource.file_name}")
+  unless ::File.exist?("#{node['ant']['home']}/lib/#{@current_resource.file_name}")
+    directory "#{node['ant']['home']}/lib" do
+      action :create
+      recursive true
+    end
+
     remote_file remote_file_path do
       source new_resource.url
-      mode "0755"
+      mode '0755'
     end
     new_resource.updated_by_last_action(true)
   end
@@ -36,5 +41,5 @@ end
 private
 
 def remote_file_path
-  "#{node["ant"]["home"]}/lib/#{new_resource.file_name}"
+  "#{node['ant']['home']}/lib/#{new_resource.file_name}"
 end

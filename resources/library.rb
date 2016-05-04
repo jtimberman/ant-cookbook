@@ -21,10 +21,10 @@
 default_action :install
 actions :install
 
-attribute :name, :kind_of           => String, :required => true, :name_attribute => true
-attribute :url, :kind_of            => String, :required => true
+attribute :name, kind_of: String, required: true, name_attribute: true
+attribute :url, kind_of: String, required: true
 
 def file_name
-  partition = self.url.partition(/.*\//)
+  partition = url.partition(%r{.*\/})
   partition.last
 end

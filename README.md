@@ -10,9 +10,11 @@ Platform:
 
 * Debian, Ubuntu, CentOS, Red Hat, Fedora
 
-The following Opscode cookbooks are dependencies:
+Dependencies
+============
 
-* java
+The following Chef cookbooks are dependencies:
+
 * ark
 
 Attributes
@@ -30,7 +32,7 @@ Attributes
   recipe. The hash is the form `{"library-name" =>
   "http://url.to.library.jar.file"}`
 
-Resources/Providers
+Resources
 ===================
 
 ## ant\_library
@@ -53,7 +55,9 @@ Resources/Providers
 Usage
 =====
 
-Simply include the recipe where you want Apache Ant installed.
+*NOTE* This cookbook requires java to be installed. You can include the `java` community cookbook and use the default recipe along with specific attributes to install, or you can install using your own cookbook. 
+
+Include a recipe in your wrapper cookbook where you want Apache Ant installed.
 
 Recipes
 =======
@@ -61,13 +65,15 @@ Recipes
 ant::install_package
 ====================
 
-Backwards compatible recipe for older users of the cookbook. Installs Ant, Ant-Contribs, and Ivy using your OS's
-package manager.
+Backwards compatible recipe for older users of the cookbook. Installs Ant, Ant-Contribs, and Ivy using your OS's package manager.
+
+*NOTE* Ivy is not available with CentOS 5-6 package manager. You must use install_source recipe for these OS versions.
 
 ant::install_source
 ===================
 
 Installs Ant using the `ark` resource and a URL for an Ant archive. Adds an $ANT_HOME to your environment.
+
 Uses the `ant::library` LWRP to install optional Ant packages into the Ant installation's `lib` directory.
 
 TODO
@@ -81,7 +87,7 @@ License and Author
 
 Author:: Seth Chisamore (<schisamo@opscode.com>)
 
-Copyright 2010, Opscode, Inc.
+Copyright 2016, Chef Software, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

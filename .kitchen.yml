@@ -28,9 +28,23 @@ platforms:
 
 suites:
 - name: default
-  run_list: ["recipe[ant]"]
-  attributes: {}
+  run_list: ['recipe[java]','recipe[ant]']
+  attributes:
+    java:
+      install_flavor: 'oracle'
+      jdk_version: 8
+      set_etc_environment: true
+      oracle:
+        accept_oracle_download_terms: true
 
 - name: source_install
-  run_list: ["recipe[ant]"]
-  attributes: {ant: { install_method: "source" }}
+  run_list: ['recipe[java]','recipe[ant]']
+  attributes:
+    ant:
+      install_method: 'source'
+    java:
+      install_flavor: 'oracle'
+      jdk_version: 8
+      set_etc_environment: true
+      oracle:
+        accept_oracle_download_terms: true
