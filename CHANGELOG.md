@@ -1,6 +1,10 @@
-## v1.0.3:
 
-*NOTE* The next release of this cookbook will be Chef 12+, and will include a rewrite to be resource driven rather than attribute driven.
+## v1.0.4:
+*NOTE* The next major release of this cookbook will be Chef 12+, and will include a rewrite to be resource driven rather than attribute driven.
+
+- Fixes issue #9 of extra forward slash in url
+
+## v1.0.3:
 
 - Updated Berkshelf configuration
 - Creation of .kitchen.docker.yml file to speed up testing
