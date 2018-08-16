@@ -19,7 +19,7 @@
 #
 
 def load_current_resource
-  @current_resource = Chef::Resource::AntLibrary.new(new_resource.name)
+  @current_resource = Chef::ResourceResolver.resolve(:ant_library).new(new_resource.name)
   @current_resource.url new_resource.url
 end
 
